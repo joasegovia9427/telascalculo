@@ -12,6 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vite.dev/config/
 export default defineConfig({
+    base: '/telascalculo/',
     plugins: [react(), tailwindcss(), checker({ typescript: true })],
     resolve: {
         alias: {
