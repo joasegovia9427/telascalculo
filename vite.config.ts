@@ -11,8 +11,8 @@ import postcssImportantTailwind from './postcss-important-tailwind.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vite.dev/config/
-export default defineConfig({
-    base: '/telascalculo/',
+export default defineConfig(({ command }) => ({
+    base: command === 'build' ? '/telascalculo/' : '/',
     plugins: [react(), tailwindcss(), checker({ typescript: true })],
     resolve: {
         alias: {
@@ -24,4 +24,4 @@ export default defineConfig({
             plugins: [postcssImportantTailwind()],
         },
     },
-});
+}));

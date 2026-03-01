@@ -49,7 +49,7 @@ export const Calculator = () => {
 
     return (
         <div className="flex flex-col">
-            <p>Calculator</p>
+            <h1>Calculator</h1>
 
             <Card>
                 <CardHeader className="flex flex-row items-center">
