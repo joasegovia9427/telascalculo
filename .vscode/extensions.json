@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "emeraldwalk.RunOnSave",
+        "streetsidesoftware.code-spell-checker",
+        "shardulm94.trailing-spaces"
+    ]
+}
