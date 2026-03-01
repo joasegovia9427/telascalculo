@@ -1,6 +1,5 @@
 export const ROUTES = {
     HOME: '/',
-    COUNTRIES: '/countries',
-    COUNTRY_DETAIL: '/countries/:id',
+    CALCULATOR: '/calculator',
     ABOUT: '/about',
 } as const;

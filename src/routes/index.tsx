@@ -15,7 +15,7 @@ export const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: ROUTES.COUNTRIES,
+                path: ROUTES.CALCULATOR,
                 element: <CountriesList />,
             },
             {
