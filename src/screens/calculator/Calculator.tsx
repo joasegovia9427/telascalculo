@@ -52,10 +52,10 @@ export const Calculator = () => {
             <p>Calculator</p>
 
             <Card>
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center">
                     <CardTitle>Source</CardTitle>
                     <CardDescription>
-                        <p>Add source items</p>
+                        <p className="my-auto">Add source items</p>
                     </CardDescription>
                 </CardHeader>
                 <div className="flex justify-between gap-2">
@@ -83,16 +83,16 @@ export const Calculator = () => {
             </Card>
 
             <Card>
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center">
                     <CardTitle>Items</CardTitle>
                     <CardDescription>
-                        <p>{list.length} items found</p>
+                        <p className="my-auto">{list.length} items found</p>
                     </CardDescription>
                 </CardHeader>
                 <div>
-                    <ul className="items-start gap-6 divide-y divide-gray-900">
+                    <ul className="items-start divide-y divide-gray-900">
                         {list.map(item => (
-                            <div key={item.id} className="flex flex-col py-2">
+                            <div key={item.id} className="flex flex-col pt-1">
                                 <p>Item line: {item.originalLine}</p>
                                 <div className="-x flex flex-row items-center gap-2 divide-gray-900">
                                     <p>Name:</p>
