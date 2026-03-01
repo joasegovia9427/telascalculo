@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import imagotypeTransparent from '~/assets/imagotypeTransparent.png';
+
+import isotypeTransparent from '~/assets/isotypeTransparent.png';
+import logotype from '~/assets/logotype.svg';
 import { ROUTES } from '~/routes/routes';
 
 export default function Home() {
@@ -14,10 +16,11 @@ export default function Home() {
 
     return (
         <div className="flex min-h-[60vh] w-full animate-pulse flex-col items-center justify-center gap-10">
+            <img src={isotypeTransparent} alt="TeLasCalculo App" className="" />
             <img
-                src={imagotypeTransparent}
+                src={logotype}
                 alt="TeLasCalculo App"
-                className=""
+                className="object-cover brightness-100"
             />
             <p>Loading ...</p>
         </div>

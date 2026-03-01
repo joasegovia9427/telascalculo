@@ -1,4 +1,14 @@
+import { generateId } from '~/utils/utils';
+
+import { FABRIC_TYPES, FABRICS } from './constants';
 import { Item } from './type';
+
+type FabricKey = keyof typeof FABRICS;
+type FabricType = Item['props']['type'];
+
+// const replaceBreakLinesForSpaces = (text: string): string => {
+//     return text.replace(/\n/g, ' ');
+// };
 
 export const getProcessTextSource = (text: string): Item[] => {
     const lines = text
@@ -46,21 +56,18 @@ const parseMixedNumber = (s: string): number => {
     return Number.isNaN(simple) ? 0 : simple;
 };
 
-/** Match "34 3/4 x 60 1/4 (Manual L)" or "94 5/8 X 78 1/8 (2,1)" */
+/** Match "34 3/4 x 60 1/4 (Manual L)", "94 5/8 X 78 1/8 (2,1)", or "36 1/4 × 72 3/8" */
 const parseDimensionsLine = (
     line: string
-): { width: number; height: number; type: string } => {
-    const xMatch = line.match(/^(.+?)\s+[xX]\s+(.+?)(?:\s*\(([^)]*)\))?\s*$/);
+): { width: number; height: number } => {
+    const xMatch = line.match(/^(.+?)\s+[xX×]\s+(.+?)(?:\s*\(([^)]*)\))?\s*$/);
     if (xMatch) {
         const width = parseMixedNumber(xMatch[1].trim());
         const height = parseMixedNumber(xMatch[2].trim());
-        const type = (xMatch[3] ?? '').trim();
-        return { width, height, type };
+        return { width, height };
     }
 
-    //TODO:: identify the type here
-
-    return { width: 0, height: 0, type: '' };
+    return { width: 0, height: 0 };
 };
 
 const yardsFromDimensions = (
@@ -81,18 +88,65 @@ const yardsFromDimensions = (
     };
 };
 
+const parseTypeFabricColor = (
+    itemText: string
+): { type: FabricType; fabric: string; color: string } => {
+    const normalized = itemText.toLowerCase().trim();
+
+    for (const key of Object.keys(FABRICS) as FabricKey[]) {
+        const entry = FABRICS[key];
+        const fabricName = entry.name.toLowerCase();
+        const fabricKey = key.replace(/_/g, ' ');
+        const fabricMatch =
+            normalized.includes(fabricName) || normalized.includes(fabricKey);
+
+        if (!fabricMatch) continue;
+
+        const colors = entry.color as Record<string, string>;
+        for (const [colorKey, colorName] of Object.entries(colors)) {
+            const colorKeyNorm = colorKey.replace(/_/g, ' ');
+            const colorNameNorm = colorName.toLowerCase();
+            if (
+                normalized.includes(colorNameNorm) ||
+                normalized.includes(colorKeyNorm)
+            ) {
+                return {
+                    type: entry.type,
+                    fabric: entry.name,
+                    color: colorName,
+                };
+            }
+        }
+
+        return {
+            type: entry.type,
+            fabric: entry.name,
+            color: 'unknown',
+        };
+    }
+
+    return {
+        type: FABRIC_TYPES.UNKNOWN,
+        fabric: 'unknown',
+        color: 'unknown',
+    };
+};
+
 const extractInfoFromItems = (stringsItems: string[]): Item[] => {
     const parsedItems: Item[] = stringsItems.map(stringItem => {
+        const uniqueId = generateId();
+
         const lines = stringItem
             .split('\n')
             .map(l => l.trim())
             .filter(Boolean);
         const firstLine = lines[0] ?? '';
         const firstMatch = firstLine.match(/^(\d+)\.\s*(.+)$/);
-        const id = firstMatch?.[1] ?? '';
+        const id = firstMatch?.[1] + '-' + uniqueId;
         const name = firstMatch?.[2] ?? firstLine;
         const detailsLine = lines[1] ?? '';
-        const { width, height, type } = parseDimensionsLine(detailsLine);
+        const { width, height } = parseDimensionsLine(detailsLine);
+        const { type, fabric, color } = parseTypeFabricColor(stringItem);
         const yards = yardsFromDimensions(height, type);
         return {
             id,
@@ -100,6 +154,8 @@ const extractInfoFromItems = (stringsItems: string[]): Item[] => {
             props: {
                 name,
                 type,
+                fabric,
+                color,
                 width,
                 height,
                 yards,

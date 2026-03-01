@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import isotypeTransparent from '~/assets/isotypeTransparent.png';
-import logotypeTransparent from '~/assets/logotypeTransparent.png';
+import logotype from '~/assets/logotype.svg';
 import { ROUTES } from '~/routes/routes';
 
 export default function Header() {
@@ -13,17 +13,16 @@ export default function Header() {
                         <img
                             src={isotypeTransparent}
                             alt="TeLasCalculo App"
-                            className="w-12"
+                            className="w-12 object-cover"
                         />
-
                         <img
-                            src={logotypeTransparent}
+                            src={logotype}
                             alt="TeLasCalculo App"
-                            className="h-12 brightness-0 invert"
+                            className="h-12 object-cover brightness-1 invert"
                         />
                     </div>
                 </Link>
-                <div className="flex gap-6">
+                <div className="hidden gap-6 sm:flex">
                     <Link
                         to={ROUTES.HOME}
                         className="hover:text-accent-light transition-colors"
