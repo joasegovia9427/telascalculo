@@ -23,7 +23,7 @@ export default {
                         typeof node.value.value === 'string'
                     ) {
                         classNameValue = node.value.value;
-                        const sourceCode = context.getSourceCode();
+                        const sourceCode = context.sourceCode;
                         const text = sourceCode.getText(node.value);
                         quote =
                             text[0] === '"' || text[0] === "'" ? text[0] : '"';

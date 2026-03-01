@@ -1,37 +1,95 @@
-import React, { ComponentPropsWithoutRef } from 'react';
-import { twMerge as tw } from 'tailwind-merge';
+import * as React from 'react';
 
-//TODO:: migrate to React Compound Component with Tailwind variants with slots to have better control over the styling.
+import { twm } from '~/lib/utils';
 
-export function Card({
-    title = '',
-    innerFilter,
-    children,
-    className,
-    ...props
-}: Readonly<
-    ComponentPropsWithoutRef<'div'> & {
-        title?: string;
-        innerFilter?: React.ReactNode;
-    }
->) {
+function Card({ className, ...props }: React.ComponentProps<'div'>) {
     return (
         <div
-            className={tw(
-                'rounded-2xl border-2 border-black/15 bg-white px-6 py-4',
+            data-slot="card"
+            className={twm(
+                'bg-card text-card-foreground mb-3 flex flex-col gap-3 divide-y divide-gray-200 rounded-xl border border-gray-200 p-6 shadow-md',
                 className
             )}
             {...props}
-        >
-            <div className="flex items-center justify-between">
-                {title && (
-                    <h3 className="mb-3.5 text-lg font-medium text-black">
-                        {title}
-                    </h3>
-                )}
-                {innerFilter}
-            </div>
-            {children}
-        </div>
+        />
     );
 }
+
+function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
+    return (
+        <div
+            data-slot="card-header"
+            className={twm(
+                '@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6',
+                className
+            )}
+            {...props}
+        />
+    );
+}
+
+function CardTitle({ className, ...props }: React.ComponentProps<'div'>) {
+    return (
+        <div
+            data-slot="card-title"
+            className={twm('text-xl font-semibold', className)}
+            {...props}
+        />
+    );
+}
+
+function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
+    return (
+        <div
+            data-slot="card-description"
+            className={twm('text-muted-foreground text-sm', className)}
+            {...props}
+        />
+    );
+}
+
+function CardAction({ className, ...props }: React.ComponentProps<'div'>) {
+    return (
+        <div
+            data-slot="card-action"
+            className={twm(
+                'col-start-2 row-span-2 row-start-1 self-start justify-self-end',
+                className
+            )}
+            {...props}
+        />
+    );
+}
+
+function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
+    return (
+        <div
+            data-slot="card-content"
+            className={twm('px-3 sm:px-6', className)}
+            {...props}
+        />
+    );
+}
+
+function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
+    return (
+        <div
+            data-slot="card-footer"
+            className={twm(
+                'flex items-center px-3 sm:px-6 [.border-t]:pt-6',
+                className
+            )}
+            {...props}
+        />
+    );
+}
+
+export {
+    Card,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+};

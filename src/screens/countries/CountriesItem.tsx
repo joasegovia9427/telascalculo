@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from 'lucide-react';
 
-import Button from '~/components/ui/Button';
+import { Button } from '~/components/ui';
 import { useCountryByCode } from '~/services/countries';
 import { CountryItemProps } from '~/services/countries/types';
 
@@ -21,7 +21,7 @@ export const CountryItem = ({
     return (
         <li className="rounded-lg bg-white shadow-sm">
             <Button
-                variant="transparent"
+                variant="ghost"
                 onClick={onToggle}
                 className="h-auto w-full p-0 text-left"
             >
