@@ -1,4 +1,31 @@
-export const mockData = `1. Entrance Living Room Arch (Open) - Eclipse Ivory
+export const mockData = `4. Master Bed Left - Génesis BlackoutWhile
+22 1/4 x 45 5/8 (Manual R) 3 V
+70 5/8 × 59 3/4 (Manual L) 44d
+
+5. Blackout - Blackout negro con gulas, 4d
+50 5/8 x 59 5/8 (Manual R) 4y2
+6. Baño máster - Illusion Aurora Chareoal
+23 1/2 x 35 (Manual R) 3 y
+2. Sliding door - Illusion Aurora Chared
+95 1/8 × 77 (93 1/4) (Motorized RS yd
+1. Sliding Door Real Blackout Combi Ivory
+105 7/8 × 93 3/4 (2,1)
+Left Panel: 35 1/2 Right Panel: 70 3/8
+BB: 104 1/4 (Motorized L)
+2. Master Blackout White w/ Side Channels
+50 7/8 x 60 1/2 (Manual L)
+3. Room 1 Blackout White No side Channels
+51 1/4 x 60 3/4 (Manual )R
+4. Room 2 Blackout White No side Channels
+34 1/2 x 60 5/8 (Manual R)
+Rafael: 1 Motor, 1 Charger, 1 One Channel Remote Control.
+
+
+1. Sliding Door - Génesis Blackout White
+951/8 × 78 (2,1)
+1. Sliding Door - Genesis Blackout White
+951/8 × 78 (2,1)
+1. Entrance Living Room Arch (Open) - Eclipse Ivory
 36 1/4 × 72 3/8
 2. Living Room Arch (Open) - Eclipse Ivory
 26 1/2 x 51 5/8
@@ -47,17 +74,6 @@ BB: 93 5/8 (Motorized LR)
 71 7/8 x 60 3/8 (Manual R)
 Zayda: 3 Motor, 2 Chargers, 1 HUB, 1 Six Channels Control
 
-1. Sliding Door Real Blackout Combi Ivory
-105 7/8 × 93 3/4 (2,1)
-Left Panel: 35 1/2 Right Panel: 70 3/8
-BB: 104 1/4 (Motorized L)
-2. Master Blackout White w/ Side Channels
-50 7/8 x 60 1/2 (Manual L)
-3. Room 1 Blackout White No side Channels
-51 1/4 x 60 3/4 (Manual )R
-4. Room 2 Blackout White No side Channels
-34 1/2 x 60 5/8 (Manual R)
-Rafael: 1 Motor, 1 Charger, 1 One Channel Remote Control.
 
 
 1. Máster Left - Genesis Blackout White
@@ -78,16 +94,11 @@ Ernesto: 2 Motor, 1 Charger, 1 Two Channels Remote Control
 
 1. Cocina - Illusion Aurora Charcoal
 34 1/2 × 34 5/8 (Manual R) 3V1
-2. Sliding door - Illusion Aurora Chared
-95 1/8 × 77 (93 1/4) (Motorized RS yd
 3. Cuarto 1 - Illusion Aurora Charcoal
 34 5/8 x 59 1/23 (Manual R) 4 4d
 4. Máster - Illusion Aurora Charcoal
 50 5/8 × 59 5/8 (Manual R) 4 4d
-5. Blackout - Blackout negro con gulas, 4d
-50 5/8 x 59 5/8 (Manual R) 4y2
-6. Baño máster - Illusion Aurora Chareoal
-23 1/2 x 35 (Manual R) 3 y
+
 7. Cuarto 2 - Illusion Aurora Charcoal
 34 3/8 × 59 3/4 (Manual R) 4yd -
 8. Baño visita - Illusion Aurora Charcoal
@@ -102,9 +113,7 @@ Limbania: 1 Motor, 1 Charger, 1 One Channel Control.
 2. Living Room - Génesis Blackout White
 34 5/8 × 59 7/8 (Manual L) 41d
 3. Entrance - Génesis Blackout Whit
-4. Master Bed Left - Génesis BlackoutWhile
-22 1/4 x 45 5/8 (Manual R) 3 V
-70 5/8 × 59 3/4 (Manual L) 44d
+
 5. Master Bed Right - Génesis Blackout White
 34 5/8 x 59 7/8 (Manual R) 44l
 6. Room 1 - Génesis Blackout White
@@ -113,4 +122,5 @@ Limbania: 1 Motor, 1 Charger, 1 One Channel Control.
 7. Girl Room - Génesis Blackout White
 34 1/2 × 59 7/8 (Manual R) 44d
 Oriana: 1 Motor, 1 Charger, 1 One Ch Remote Control
+
 `;

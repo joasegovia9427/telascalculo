@@ -35,7 +35,7 @@ export const FABRICS = {
         type: FABRIC_TYPES.ZEBRA,
         color: {
             ice: 'Ice',
-            ivorly: 'Ivorly',
+            ivory: 'Ivory',
             creme: 'Creme',
             chocolate: 'Chocolate',
             cloud: 'Cloud',
@@ -66,7 +66,7 @@ export const FABRICS = {
         },
     },
     genesis_blackout: {
-        name: 'Genesis Blackout',
+        name: 'Génesis Blackout',
         type: FABRIC_TYPES.BLACKOUT,
         color: {
             white: 'White',

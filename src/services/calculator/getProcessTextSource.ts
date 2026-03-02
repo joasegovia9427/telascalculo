@@ -56,11 +56,13 @@ const parseMixedNumber = (s: string): number => {
     return Number.isNaN(simple) ? 0 : simple;
 };
 
-/** Match "34 3/4 x 60 1/4 (Manual L)", "94 5/8 X 78 1/8 (2,1)", or "36 1/4 × 72 3/8" */
+/** Match "34 3/4 x 60 1/4 (Manual L)", "94 5/8 X 78 1/8 (2,1)", or "36 1/4 × 72 3/8"; allows trailing text after optional parens */
 const parseDimensionsLine = (
     line: string
 ): { width: number; height: number } => {
-    const xMatch = line.match(/^(.+?)\s+[xX×]\s+(.+?)(?:\s*\(([^)]*)\))?\s*$/);
+    const xMatch = line.match(
+        /^(\d+(?:\s+\d+\/\d+)?)\s*[xX×]\s*(\d+(?:\s+\d+\/\d+)?)(?:\s*\([^)]*\))?/
+    );
     if (xMatch) {
         const width = parseMixedNumber(xMatch[1].trim());
         const height = parseMixedNumber(xMatch[2].trim());
@@ -68,6 +70,12 @@ const parseDimensionsLine = (
     }
 
     return { width: 0, height: 0 };
+};
+
+/** True if the line looks like a dimensions line (W x H) so it can be attributed to the previous item. */
+const isDimensionsLine = (line: string): boolean => {
+    const { width, height } = parseDimensionsLine(line);
+    return width > 0 && height > 0;
 };
 
 const yardsFromDimensions = (
@@ -133,35 +141,59 @@ const parseTypeFabricColor = (
 };
 
 const extractInfoFromItems = (stringsItems: string[]): Item[] => {
-    const parsedItems: Item[] = stringsItems.map(stringItem => {
-        const uniqueId = generateId();
+    const parsedItems: Item[] = [];
 
+    for (const stringItem of stringsItems) {
+        const uniqueId = generateId();
         const lines = stringItem
             .split('\n')
             .map(l => l.trim())
             .filter(Boolean);
         const firstLine = lines[0] ?? '';
         const firstMatch = firstLine.match(/^(\d+)\.\s*(.+)$/);
-        const id = firstMatch?.[1] + '-' + uniqueId;
+        const baseId = (firstMatch?.[1] ?? '0') + '-' + uniqueId;
         const name = firstMatch?.[2] ?? firstLine;
-        const detailsLine = lines[1] ?? '';
-        const { width, height } = parseDimensionsLine(detailsLine);
         const { type, fabric, color } = parseTypeFabricColor(stringItem);
-        const yards = yardsFromDimensions(height, type);
-        return {
-            id,
-            originalLine: stringItem,
-            props: {
-                name,
-                type,
-                fabric,
-                color,
-                width,
-                height,
-                yards,
-            },
-        };
-    });
+
+        const dimensionLines = lines.slice(1).filter(isDimensionsLine);
+
+        if (dimensionLines.length === 0) {
+            const detailsLine = lines[1] ?? '';
+            const { width, height } = parseDimensionsLine(detailsLine);
+            const yards = yardsFromDimensions(height, type);
+            parsedItems.push({
+                id: baseId,
+                originalLine: stringItem,
+                props: {
+                    name,
+                    type,
+                    fabric,
+                    color,
+                    width,
+                    height,
+                    yards,
+                },
+            });
+        } else {
+            dimensionLines.forEach((dimLine, index) => {
+                const { width, height } = parseDimensionsLine(dimLine);
+                const yards = yardsFromDimensions(height, type);
+                parsedItems.push({
+                    id: `${baseId}-${index}`,
+                    originalLine: index === 0 ? stringItem : dimLine,
+                    props: {
+                        name,
+                        type,
+                        fabric,
+                        color,
+                        width,
+                        height,
+                        yards,
+                    },
+                });
+            });
+        }
+    }
 
     return parsedItems;
 };
