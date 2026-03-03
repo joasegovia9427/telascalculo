@@ -1,3 +1,5 @@
+import { SquareSigmaIcon } from 'lucide-react';
+
 import { Card, CardDescription, CardHeader, CardTitle } from '~/components/ui';
 import {
     Accordion,
@@ -17,11 +19,14 @@ export const InvoicesProcessedList = ({ list }: { list: Item[] }) => {
         <Accordion type="single" collapsible defaultValue="item-1">
             <AccordionItem value="item-1">
                 <Card>
-                    <AccordionTrigger headerClassName="bg-card sticky top-0 z-10 -mx-6 -mt-6 px-6 pt-6">
-                        <CardHeader className="flex w-full flex-row items-center">
+                    <CardHeader className="bg-card sticky top-0 z-10 -mx-6 -mt-6 flex flex-row items-center px-6 pt-6">
+                        <AccordionTrigger
+                            headerClassName="flex-1"
+                            className="flex-1 [&>svg]:ml-2"
+                        >
                             <CardTitle>Items</CardTitle>
-                            <CardDescription className="flex w-full flex-row items-center justify-between gap-2 pr-4">
-                                <p className="my-auto">
+                            <CardDescription className="flex w-full flex-row items-center justify-between gap-3 pr-4">
+                                <p className="my-auto pl-3">
                                     {list.length} items found
                                 </p>
                                 {unknownDataCounter > 0 && (
@@ -29,14 +34,17 @@ export const InvoicesProcessedList = ({ list }: { list: Item[] }) => {
                                         ERROR: {unknownDataCounter} unknown data
                                     </p>
                                 )}
-                                {unknownDataCounter === 0 && (
-                                    <p className="my-auto rounded-md bg-green-200 p-3">
-                                        No unknown data found. All OK 😉
-                                    </p>
-                                )}
+                                {unknownDataCounter === 0 &&
+                                    list.length > 0 && (
+                                        <div className="flex w-auto shrink-0 flex-row items-center gap-2 rounded-md bg-green-600 p-3 text-white">
+                                            No unknown data found. All OK 😉.
+                                            Calculate Yards
+                                            <SquareSigmaIcon />
+                                        </div>
+                                    )}
                             </CardDescription>
-                        </CardHeader>
-                    </AccordionTrigger>
+                        </AccordionTrigger>
+                    </CardHeader>
 
                     <AccordionContent>
                         <div className="max-h-[60vh] overflow-y-auto">

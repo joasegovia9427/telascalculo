@@ -75,13 +75,15 @@ export const InvoiceSource = ({
                             </div>
                         </div>
 
-                        <Button
-                            className="w-full"
-                            onClick={() => onProcessSource(textSource)}
-                        >
-                            Process Source
-                            <ArrowDownWideNarrowIcon />
-                        </Button>
+                        <AccordionTrigger>
+                            <Button
+                                className="w-full"
+                                onClick={() => onProcessSource(textSource)}
+                            >
+                                Process Source
+                                <ArrowDownWideNarrowIcon />
+                            </Button>
+                        </AccordionTrigger>
                     </AccordionContent>
                 </Card>
             </AccordionItem>
