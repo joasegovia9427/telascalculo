@@ -20,10 +20,10 @@ export const InvoicesProcessedList = ({ list }: { list: Item[] }) => {
                     <CardHeader className="bg-card sticky top-0 z-10 -mx-6 -mt-6 flex flex-row items-center px-6 pt-6">
                         <AccordionTrigger
                             headerClassName="flex-1"
-                            className="flex-1 [&>svg]:ml-2"
+                            className="flex-1 flex-col sm:flex-row [&>svg]:ml-2"
                         >
                             <CardTitle>Items</CardTitle>
-                            <CardDescription className="flex w-full flex-row items-center justify-between gap-3 pr-4">
+                            <CardDescription className="flex w-full items-center justify-between gap-3 pr-4">
                                 <p className="my-auto pl-3">
                                     {list.length} items found
                                 </p>
