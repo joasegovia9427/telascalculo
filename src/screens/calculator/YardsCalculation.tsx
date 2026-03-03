@@ -1,4 +1,10 @@
-import { Card, CardHeader, CardTitle, ItemPill } from '~/components/ui';
+import {
+    Card,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+    ItemPill,
+} from '~/components/ui';
 import {
     Accordion,
     AccordionContent,
@@ -21,7 +27,15 @@ export const YardsCalculation = ({ list }: { list: Item[] }) => {
                             headerClassName="flex-1"
                             className="flex-1 [&>svg]:ml-2"
                         >
-                            <CardTitle>Yards Calculation Summary</CardTitle>
+                            <CardTitle className="flex-1">
+                                Yards Calculation Summary
+                            </CardTitle>
+                            <CardDescription className="flex w-full flex-1 justify-end">
+                                <div className="flex w-auto shrink-0 flex-row items-center gap-2 rounded-md bg-blue-800/70 p-1 text-white">
+                                    TOTALS TYPES-FABRICS-COLORS::{' '}
+                                    {yardsByTypeFabricColor.length}
+                                </div>
+                            </CardDescription>
                         </AccordionTrigger>
                     </CardHeader>
 

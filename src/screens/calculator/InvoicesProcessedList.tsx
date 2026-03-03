@@ -1,5 +1,3 @@
-import { SquareSigmaIcon } from 'lucide-react';
-
 import { Card, CardDescription, CardHeader, CardTitle } from '~/components/ui';
 import {
     Accordion,
@@ -36,10 +34,8 @@ export const InvoicesProcessedList = ({ list }: { list: Item[] }) => {
                                 )}
                                 {unknownDataCounter === 0 &&
                                     list.length > 0 && (
-                                        <div className="flex w-auto shrink-0 flex-row items-center gap-2 rounded-md bg-green-600 p-3 text-white">
+                                        <div className="flex w-auto shrink-0 flex-row items-center gap-2 rounded-md bg-green-600/70 p-1 text-white">
                                             No unknown data found. All OK 😉.
-                                            Calculate Yards
-                                            <SquareSigmaIcon />
                                         </div>
                                     )}
                             </CardDescription>
