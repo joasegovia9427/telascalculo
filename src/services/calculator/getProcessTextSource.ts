@@ -36,9 +36,7 @@ export const getProcessTextSource = (text: string): Item[] => {
         stringsItems.push(currentItem);
     }
 
-    console.log('items:: ', stringsItems);
     const parsedItems = extractInfoFromItems(stringsItems);
-    console.log('parsedItems:: ', parsedItems);
 
     return parsedItems;
 };
@@ -56,12 +54,12 @@ const parseMixedNumber = (s: string): number => {
     return Number.isNaN(simple) ? 0 : simple;
 };
 
-/** Match "34 3/4 x 60 1/4 (Manual L)", "94 5/8 X 78 1/8 (2,1)", or "36 1/4 × 72 3/8"; allows trailing text after optional parens */
+/** Match "34 3/4 x 60 1/4 (Manual L)", "24 1/4 (Tela exacta) x 85 1/4 (Sumarle 3\" a la altura) (Manual R)", or "36 1/4 × 72 3/8"; allows parentheticals before/after x and at end */
 const parseDimensionsLine = (
     line: string
 ): { width: number; height: number } => {
     const xMatch = line.match(
-        /^(\d+(?:\s+\d+\/\d+)?)\s*[xX×]\s*(\d+(?:\s+\d+\/\d+)?)(?:\s*\([^)]*\))?/
+        /^(\d+(?:\s+\d+\/\d+)?)(?:\s*\([^)]*\))*\s*[xX×]\s*(\d+(?:\s+\d+\/\d+)?)(?:\s*\([^)]*\))*/
     );
     if (xMatch) {
         const width = parseMixedNumber(xMatch[1].trim());

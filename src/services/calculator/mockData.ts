@@ -1,12 +1,7 @@
-export const mockData = `4. Master Bed Left - Génesis BlackoutWhile
-22 1/4 x 45 5/8 (Manual R) 3 V
-70 5/8 × 59 3/4 (Manual L) 44d
-
-5. Blackout - Blackout negro con gulas, 4d
-50 5/8 x 59 5/8 (Manual R) 4y2
-6. Baño máster - Illusion Aurora Chareoal
+export const mockData = `
+6. Baño máster - Illusion Aurora Charcoal
 23 1/2 x 35 (Manual R) 3 y
-2. Sliding door - Illusion Aurora Chared
+2. Sliding door - Illusion Aurora Charcoal
 95 1/8 × 77 (93 1/4) (Motorized RS yd
 1. Sliding Door Real Blackout Combi Ivory
 105 7/8 × 93 3/4 (2,1)
@@ -19,12 +14,32 @@ BB: 104 1/4 (Motorized L)
 4. Room 2 Blackout White No side Channels
 34 1/2 x 60 5/8 (Manual R)
 Rafael: 1 Motor, 1 Charger, 1 One Channel Remote Control.
-
-
+3. Entrance - Génesis Blackout White
+22 1/4 x 45 5/8 (Manual R) 
 1. Sliding Door - Génesis Blackout White
-951/8 × 78 (2,1)
+95 1/8 × 78 (2,1)
 1. Sliding Door - Genesis Blackout White
-951/8 × 78 (2,1)
+95 1/8 × 78 (2,1)
+
+14. Room 2 Left - Eclipse Ivory
+69 1/8 x 57 3/8 (Manual R)
+
+5. Master Room Door - Wood Look Brown
+24 1/4 (Tela exacta) x 85 1/4 (Sumarle 3" a la altura) (Manual R)
+5. Blackout - Blackout negro con guias
+50 5/8 x 59 5/8 (Manual R) 4y2
+
+
+Round Cassette - Cassette, Bottom, Chain & Components All Bronze Color
+1. Master Room Bed Left - Zebra Shade: Wood Look Brown
+34 3/4 x 69 5/8 (ManualL)
+2. Master Room Bed Right - Wood Look Brown
+34 3/4 x 69 1/2 (Manual R)
+3. Master Room Left - Wood Look Brown
+103 7/8 × 69 1/2 (2,1) (Manual LR)
+4. Master Room Right - Wood Look Brown
+72 1/4 x 70 (Manual R)
+
 1. Entrance Living Room Arch (Open) - Eclipse Ivory
 36 1/4 × 72 3/8
 2. Living Room Arch (Open) - Eclipse Ivory
@@ -51,16 +66,14 @@ Rafael: 1 Motor, 1 Charger, 1 One Channel Remote Control.
 35 7/8 x 61 1/2 (Manual L)
 13. Room 1 - Eclipse Ivory
 35 3/4 x 61 1/4 (Manual L)
-14. Room 2 Left - Eclipse Ivory
-691/8 x 57 3/8 (Manual R)
+
 15. Room 2 Center - Eclipse Ivory
 51 3/8 x 36 1/8 (Manual L)
 16. Room 2 Right - Eclipse Ivory
 51 1/4 x 36 1/2 (Manual R)
 
 
-1. Sliding Door - Génesis Blackout White
-951/8 × 78 (2,1)
+
 BB: 93 5/8 (Motorized LR)
 2. Dining - Génesis Blackout White
 50 3/8 x 60 3/8 (Motorized L)
@@ -112,7 +125,7 @@ Limbania: 1 Motor, 1 Charger, 1 One Channel Control.
 71 1/8 × 77 1/2 BB: 69 3/8 (Motorized RS Yd-
 2. Living Room - Génesis Blackout White
 34 5/8 × 59 7/8 (Manual L) 41d
-3. Entrance - Génesis Blackout Whit
+
 
 5. Master Bed Right - Génesis Blackout White
 34 5/8 x 59 7/8 (Manual R) 44l
@@ -122,5 +135,7 @@ Limbania: 1 Motor, 1 Charger, 1 One Channel Control.
 7. Girl Room - Génesis Blackout White
 34 1/2 × 59 7/8 (Manual R) 44d
 Oriana: 1 Motor, 1 Charger, 1 One Ch Remote Control
-
+4. Master Bed Left - Génesis BlackoutWhite
+22 1/4 x 45 5/8 (Manual R) 3 V
+70 5/8 × 59 3/4 (Manual L) 44d
 `;

@@ -47,7 +47,7 @@ export const FABRICS = {
         type: FABRIC_TYPES.ZEBRA_BLACKOUT,
         color: {
             white: 'White',
-            ivorly: 'Ivorly',
+            ivory: 'Ivory',
             light_gray: 'Light Gray',
             dark_gray: 'Dark Gray',
             chocolate: 'Chocolate',
@@ -84,6 +84,27 @@ export const FABRICS = {
         type: FABRIC_TYPES.BLACKOUT,
         color: {
             negro: 'Negro',
+        },
+    },
+    wood_look: {
+        name: 'Wood Look',
+        type: FABRIC_TYPES.ZEBRA,
+        color: {
+            brown: 'Brown',
+        },
+    },
+    blackout_negro: {
+        name: 'Blackout Negro',
+        type: FABRIC_TYPES.BLACKOUT,
+        color: {
+            black: 'Black',
+        },
+    },
+    blackout_white: {
+        name: 'Blackout White',
+        type: FABRIC_TYPES.BLACKOUT,
+        color: {
+            white: 'White',
         },
     },
 } as const;

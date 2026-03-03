@@ -12,6 +12,3 @@ build
 coverage
 .env
 .env.local
-
-# CSS files (Tailwind v4 syntax not compatible with Prettier)
-*.css
