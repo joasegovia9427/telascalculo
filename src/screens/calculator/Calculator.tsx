@@ -6,6 +6,7 @@ import { getProcessTextSource } from '~/services/calculator/getProcessTextSource
 import { InvoiceSource } from './InvoiceSource';
 import { InvoicesProcessedList } from './InvoicesProcessedList';
 import { YardsCalculation } from './YardsCalculation';
+import { YardsGroupedRequest } from './YardsGroupedRequest';
 
 export const Calculator = () => {
     // const [newItem, setNewItem] = useState<string>('');
@@ -34,6 +35,8 @@ export const Calculator = () => {
             <InvoicesProcessedList list={list} />
 
             <YardsCalculation list={list} />
+
+            <YardsGroupedRequest list={list} />
         </div>
     );
 };

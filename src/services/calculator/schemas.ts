@@ -19,3 +19,12 @@ export const ItemSchema = z.object({
         }),
     }),
 });
+
+export const GroupedItemSchema = z.object({
+    id: z.string(),
+    type: z.string(),
+    fabric: z.string(),
+    color: z.string(),
+    totalYards: z.number(),
+    items: z.array(ItemSchema),
+});

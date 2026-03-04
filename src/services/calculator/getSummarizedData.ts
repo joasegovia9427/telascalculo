@@ -34,5 +34,9 @@ export function getYardsByTypeFabricColor(list: Item[]): YardsSummaryRow[] {
         }
     }
 
-    return Array.from(map.values());
+    return Array.from(map.values()).sort((a, b) => {
+        if (a.type !== b.type) return a.type.localeCompare(b.type);
+        if (a.fabric !== b.fabric) return a.fabric.localeCompare(b.fabric);
+        return a.color.localeCompare(b.color);
+    });
 }

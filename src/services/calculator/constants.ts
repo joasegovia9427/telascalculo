@@ -1,3 +1,5 @@
+export const MAX_WIDTH_ROLL_YARDS = 105;
+
 export const FABRIC_TYPES = {
     ZEBRA: ['zebra', 'roller zebra'],
     ZEBRA_BLACKOUT: ['zebra_blackout'],

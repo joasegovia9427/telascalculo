@@ -16,6 +16,11 @@ import { getYardsByTypeFabricColor, Item } from '~/services/calculator';
 export const YardsCalculation = ({ list }: { list: Item[] }) => {
     const yardsByTypeFabricColor = getYardsByTypeFabricColor(list);
 
+    const totalUnprocessedYards = yardsByTypeFabricColor.reduce(
+        (acc, item) => acc + item.yards,
+        0
+    );
+
     return (
         <Accordion type="single" collapsible defaultValue="item-1">
             <AccordionItem value="item-1">
@@ -26,7 +31,8 @@ export const YardsCalculation = ({ list }: { list: Item[] }) => {
                             className="flex-1 flex-col sm:flex-row [&>svg]:ml-2"
                         >
                             <CardTitle className="flex-1">
-                                Yards Calculation Summary
+                                Yards Calculation Summary: Total unprocessed
+                                yards :: {totalUnprocessedYards} yards
                             </CardTitle>
                             <CardDescription className="flex w-full flex-1 justify-end">
                                 <div className="flex w-auto shrink-0 flex-row items-center gap-2 rounded-md bg-blue-800/70 p-1 text-white">
@@ -43,7 +49,7 @@ export const YardsCalculation = ({ list }: { list: Item[] }) => {
                                 {yardsByTypeFabricColor.map((item, index) => (
                                     <div
                                         key={item.id}
-                                        className="flex flex-col gap-2 sm:flex-row"
+                                        className="flex flex-col items-center gap-2 sm:flex-row"
                                     >
                                         <div className="flex flex-row items-center gap-2">
                                             <p className="">{index + 1} )</p>
@@ -64,10 +70,14 @@ export const YardsCalculation = ({ list }: { list: Item[] }) => {
                                                 value={item.color}
                                             />
                                             <ItemPill
-                                                label="Yards"
+                                                label="*Unprocessed Yards"
                                                 value={item.yards}
                                             />
                                         </div>
+                                        <p>
+                                            Do not use this value for
+                                            calculations
+                                        </p>
                                     </div>
                                 ))}
                             </ul>
