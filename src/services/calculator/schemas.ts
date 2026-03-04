@@ -1,13 +1,13 @@
 import z from 'zod';
 
-import { FABRIC_TYPES } from './constants';
+import { FABRIC_TYPES_VALUES } from './constants';
 
 export const ItemSchema = z.object({
     id: z.string(),
     originalLine: z.string(),
     props: z.object({
         name: z.string(),
-        type: z.enum(FABRIC_TYPES),
+        type: z.enum(FABRIC_TYPES_VALUES),
         fabric: z.string(),
         color: z.string(),
         width: z.number(),

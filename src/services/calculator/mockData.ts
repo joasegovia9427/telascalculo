@@ -1,4 +1,48 @@
 export const mockData = `
+
+Square Cassette
+1. Máster Bath - Real Blackout Combi Ivory
+22 1/2 x 34 1/2 (Manual L) 2 Id -
+Color Change Service
+2. Master Right - Real Blackout Combi Ivory
+34 3/4 x 58 1/4 IB (Motorized R) 2 Yd
+3. Master Left - Real Blackout Combi Ivory
+34 5/8 × 58 IB (Motorized L) 2 Id
+4. Room 1 - Real Blackout Combi Ivory
+70 1/2 × 58 3/8 (Motorized L)2 Y
+5. Room 2 - Real Blackout Combi Ivory
+34 3/4 x 58 5/8 (Motorized L) 2 Ye-Sahiry: 4 Motor, 3 Chargers, 2 One Channel Remote Control,
+
+
+
+Square Cassette
+1. Entrance Living Room Left - Uluru Translucent Natural (Roller Translucent) 34 7/8 x 60 1/2 (Manual L)
+2. Entrance Living Room Right - Uluru Translucent Natural (Roller Translucent) 35 x 60 5/8 (Manual R)
+3. Dining Room - Uluru Translucent Natural (Roller Translucent)
+35 1/8 x 60 3/4 (Manual L)
+4. Living Room - Uluru Translucent Natural (Roller Translucent)
+35 x 60 5/8 (Manual R)
+5. Sliding Door - Uluru Translucent Natural (Roller Translucent)
+58 3/4 × 77 1/8 BB: 57 1/4 (Motorized R)
+6. Master Right - Uluru Blackout Natural (Roller Blackout)
+35 1/8 × 60 5/8 (Manual R)
+7. Master Left - Uluru Blackout Natural (Roller Blackout)
+35 3/8 x 60 5/8 (Manual L)
+8. Den - Uluru Translucent Natural (Roller Translucent)
+35 1/8 x 58 1/2 (Manual R)
+9. Room 1 - Real Blackout Combi White (Roller Zebra)
+35 1/4 × 59 (Manual R)
+10. Room 2 - Real Blackout Combi White (Roller Zebra)
+35 1/8 × 58 3/4 (Manual L)
+11. Room 3 - Real Blackout Combi White (Roller Zebra)
+35 1/4 × 58 7/8 (Manual R)
+12. Room 4 - Real Blackout Combi White (Roller Zebra)
+35 1/8 × 58 3/4 (Manual R)
+Tatiana: 1 Motor, 1 Charger, 1 HUB, 1 One Ch Remote Control.
+
+
+
+
 6. Baño máster - Illusion Aurora Charcoal
 23 1/2 x 35 (Manual R) 3 y
 2. Sliding door - Illusion Aurora Charcoal

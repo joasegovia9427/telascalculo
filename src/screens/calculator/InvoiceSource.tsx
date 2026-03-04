@@ -3,7 +3,7 @@ import {
     BrushCleaningIcon,
     // ListPlus
 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
     Button,
@@ -32,6 +32,12 @@ export const InvoiceSource = ({
     const handleClearSource = () => {
         setTextSource('');
     };
+
+    useEffect(() => {
+        return () => {
+            onProcessSource(textSource);
+        };
+    }, []);
 
     return (
         <Accordion type="single" collapsible defaultValue="item-1">

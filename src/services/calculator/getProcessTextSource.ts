@@ -6,6 +6,16 @@ import { Item } from './type';
 type FabricKey = keyof typeof FABRICS;
 type FabricType = Item['props']['type'];
 
+/** Map each alias in FABRIC_TYPES to its canonical type (first value). Sorted by alias length desc so longer matches win (e.g. "roller zebra" before "zebra"). */
+const FABRIC_TYPE_ALIASES: { alias: string; canonicalType: FabricType }[] = (
+    Object.keys(FABRIC_TYPES) as (keyof typeof FABRIC_TYPES)[]
+).flatMap(key => {
+    const values = FABRIC_TYPES[key];
+    const canonicalType = values[0] as FabricType;
+    return values.map(alias => ({ alias: alias.toLowerCase(), canonicalType }));
+});
+FABRIC_TYPE_ALIASES.sort((a, b) => b.alias.length - a.alias.length);
+
 // const replaceBreakLinesForSpaces = (text: string): string => {
 //     return text.replace(/\n/g, ' ');
 // };
@@ -54,12 +64,12 @@ const parseMixedNumber = (s: string): number => {
     return Number.isNaN(simple) ? 0 : simple;
 };
 
-/** Match "34 3/4 x 60 1/4 (Manual L)", "24 1/4 (Tela exacta) x 85 1/4 (Sumarle 3\" a la altura) (Manual R)", or "36 1/4 × 72 3/8"; allows parentheticals before/after x and at end */
+/** Match dimensions W x H; allows parentheticals before first number e.g. "(Roller Translucent) 34 7/8 x 60 1/2 (Manual L)", after x, and at end. Searches the whole line (no ^) so it works when dimensions follow a type in parens. */
 const parseDimensionsLine = (
     line: string
 ): { width: number; height: number } => {
     const xMatch = line.match(
-        /^(\d+(?:\s+\d+\/\d+)?)(?:\s*\([^)]*\))*\s*[xX×]\s*(\d+(?:\s+\d+\/\d+)?)(?:\s*\([^)]*\))*/
+        /(?:\s*\([^)]*\))*\s*(\d+(?:\s+\d+\/\d+)?)(?:\s*\([^)]*\))*\s*[xX×]\s*(\d+(?:\s+\d+\/\d+)?)(?:\s*\([^)]*\))*/
     );
     if (xMatch) {
         const width = parseMixedNumber(xMatch[1].trim());
@@ -131,8 +141,19 @@ const parseTypeFabricColor = (
         };
     }
 
+    // No fabric matched: try to infer type from aliases in FABRIC_TYPES (e.g. "roller zebra" -> zebra)
+    for (const { alias, canonicalType } of FABRIC_TYPE_ALIASES) {
+        if (normalized.includes(alias)) {
+            return {
+                type: canonicalType,
+                fabric: 'unknown',
+                color: 'unknown',
+            };
+        }
+    }
+
     return {
-        type: FABRIC_TYPES.UNKNOWN,
+        type: FABRIC_TYPES.UNKNOWN[0],
         fabric: 'unknown',
         color: 'unknown',
     };
@@ -157,7 +178,12 @@ const extractInfoFromItems = (stringsItems: string[]): Item[] => {
 
         if (dimensionLines.length === 0) {
             const detailsLine = lines[1] ?? '';
-            const { width, height } = parseDimensionsLine(detailsLine);
+            let { width, height } = parseDimensionsLine(detailsLine);
+            if (width === 0 && height === 0 && firstLine) {
+                const fromFirst = parseDimensionsLine(firstLine);
+                width = fromFirst.width;
+                height = fromFirst.height;
+            }
             const yards = yardsFromDimensions(height, type);
             parsedItems.push({
                 id: baseId,
