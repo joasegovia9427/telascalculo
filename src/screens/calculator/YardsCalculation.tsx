@@ -49,12 +49,14 @@ export const YardsCalculation = ({ list }: { list: Item[] }) => {
                                 {yardsByTypeFabricColor.map((item, index) => (
                                     <div
                                         key={item.id}
-                                        className="flex flex-col items-center gap-2 sm:flex-row"
+                                        className="flex flex-col items-center gap-1 sm:flex-row"
                                     >
-                                        <div className="flex flex-row items-center gap-2">
-                                            <p className="">{index + 1} )</p>
+                                        <div className="flex flex-row items-center gap-1">
+                                            <p className="whitespace-nowrap">
+                                                {index + 1})
+                                            </p>
                                         </div>
-                                        <div className="flex flex-row items-center gap-2">
+                                        <div className="flex flex-row items-center gap-1">
                                             <ItemPill
                                                 label="Type"
                                                 value={item.type}
@@ -64,7 +66,7 @@ export const YardsCalculation = ({ list }: { list: Item[] }) => {
                                                 value={item.fabric}
                                             />
                                         </div>
-                                        <div className="flex flex-row items-center gap-2">
+                                        <div className="flex flex-row items-center gap-1">
                                             <ItemPill
                                                 label="Color"
                                                 value={item.color}
