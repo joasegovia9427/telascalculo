@@ -1,6 +1,35 @@
+import { MAX_WIDTH_ROLL_YARDS } from './constants';
 import { GroupedItem, Item } from './type';
 
-// MAX_WIDTH_ROLL_YARDS
+/**
+ * Packs items into strips of maxRollWidth (side-by-side).
+ * Each strip length = max(yards of items in that strip).
+ * Returns total yards needed (sum of strip lengths).
+ */
+function computePackedYards(items: Item[], maxRollWidth: number): number {
+    const strips: { usedWidth: number; maxYards: number }[] = [];
+
+    for (const item of items) {
+        const { width, yards } = item.props;
+        const itemYards = yards.ceilingValue;
+        let placed = false;
+
+        for (const strip of strips) {
+            if (strip.usedWidth + width <= maxRollWidth) {
+                strip.usedWidth += width;
+                strip.maxYards = Math.max(strip.maxYards, itemYards);
+                placed = true;
+                break;
+            }
+        }
+
+        if (!placed) {
+            strips.push({ usedWidth: width, maxYards: itemYards });
+        }
+    }
+
+    return strips.reduce((sum, s) => sum + s.maxYards, 0);
+}
 
 export function getYardsWithMaxWidthRoll(list: Item[]): GroupedItem[] {
     const sorted = [...list].sort((a, b) => {
@@ -39,9 +68,9 @@ export function getYardsWithMaxWidthRoll(list: Item[]): GroupedItem[] {
                     type: t,
                     fabric: f,
                     color: c,
-                    totalYards: current.reduce(
-                        (sum, i) => sum + i.props.yards.ceilingValue,
-                        0
+                    totalYards: computePackedYards(
+                        current,
+                        MAX_WIDTH_ROLL_YARDS
                     ),
                     items: current,
                 });
@@ -60,10 +89,7 @@ export function getYardsWithMaxWidthRoll(list: Item[]): GroupedItem[] {
             type,
             fabric,
             color,
-            totalYards: current.reduce(
-                (sum, i) => sum + i.props.yards.ceilingValue,
-                0
-            ),
+            totalYards: computePackedYards(current, MAX_WIDTH_ROLL_YARDS),
             items: current,
         });
     }

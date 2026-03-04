@@ -12,6 +12,11 @@ import { getYardsWithMaxWidthRoll } from '~/services/calculator/getGroupedYards'
 import { InvoiceItemReduced } from './InvoiceItemReduced';
 
 export const YardsGroupedRequest = ({ list }: { list: Item[] }) => {
+    const totalUnprocessedYards = list.reduce(
+        (acc, item) => acc + item.props.yards.ceilingValue,
+        0
+    );
+
     const yardsGroupedRequestWithMaxWidthRoll = getYardsWithMaxWidthRoll(list);
 
     const totalProcessedYards = yardsGroupedRequestWithMaxWidthRoll.reduce(
@@ -43,8 +48,14 @@ export const YardsGroupedRequest = ({ list }: { list: Item[] }) => {
                                         Total processed yards ::{' '}
                                         {totalProcessedYards} yards
                                     </p>
+                                    <p className="text-semibold text-md my-auto align-middle text-green-600 italic">
+                                        We saved ::{' '}
+                                        {totalUnprocessedYards -
+                                            totalProcessedYards}{' '}
+                                        yards 🎉
+                                    </p>
                                     <div className="flex w-auto shrink-0 flex-row items-center gap-2 rounded-md bg-blue-800/70 p-1 text-white">
-                                        TOTALS TYPES-FABRICS-COLORS::{' '}
+                                        Totals T-F-C::{' '}
                                         {
                                             yardsGroupedRequestWithMaxWidthRoll.length
                                         }

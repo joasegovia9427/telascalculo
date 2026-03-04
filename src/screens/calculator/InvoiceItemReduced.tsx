@@ -12,7 +12,11 @@ export const InvoiceItemReduced = ({
     return (
         <div key={item.id} className="flex flex-col">
             <p>
-                {groupIndex + 1}.{index + 1}. - Item line: {item.originalLine}
+                {groupIndex + 1}.{index + 1}. - Item line:{' "'}
+                <span className="text-gray-600 italic">
+                    {item.originalLine}
+                </span>
+                {'"'}
                 <br />
                 {`Name: ${item.props.name} · Type: ${item.props.type} · Fabric: ${item.props.fabric} · Color: ${item.props.color}`}
                 <br />
