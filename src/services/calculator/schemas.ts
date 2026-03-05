@@ -26,5 +26,9 @@ export const GroupedItemSchema = z.object({
     fabric: z.string(),
     color: z.string(),
     totalYards: z.number(),
-    items: z.array(ItemSchema),
+    items: z.array(
+        ItemSchema.extend({
+            groupCode: z.string(), // A, B, C... per packing strip for UI validation
+        })
+    ),
 });

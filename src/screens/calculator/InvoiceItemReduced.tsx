@@ -1,4 +1,41 @@
+import { twm } from '~/lib/utils';
 import { Item } from '~/services/calculator';
+
+const GROUP_CODE_COLORS = {
+    A: 'bg-blue-800',
+    B: 'bg-green-600',
+    C: 'bg-yellow-600',
+    D: 'bg-red-600',
+    E: 'bg-purple-600',
+    F: 'bg-pink-600',
+    G: 'bg-orange-600',
+    H: 'bg-teal-600',
+    I: 'bg-indigo-600',
+    J: 'bg-lime-600',
+    K: 'bg-cyan-600',
+    L: 'bg-fuchsia-600',
+    M: 'bg-violet-600',
+    N: 'bg-rose-600',
+    O: 'bg-amber-600',
+    P: 'bg-emerald-600',
+    Q: 'bg-sky-600',
+    R: 'bg-rose-600',
+    S: 'bg-amber-600',
+    T: 'bg-emerald-600',
+    U: 'bg-sky-600',
+    V: 'bg-rose-600',
+    W: 'bg-amber-600',
+    X: 'bg-emerald-600',
+    Y: 'bg-sky-600',
+    Z: 'bg-rose-600',
+    AA: 'bg-amber-600',
+    AB: 'bg-emerald-600',
+    AC: 'bg-sky-600',
+    AD: 'bg-rose-600',
+    AE: 'bg-amber-600',
+    AF: 'bg-emerald-600',
+    AG: 'bg-sky-600',
+};
 
 export const InvoiceItemReduced = ({
     groupIndex,
@@ -6,7 +43,7 @@ export const InvoiceItemReduced = ({
     index,
 }: {
     groupIndex: number;
-    item: Item;
+    item: Item & { groupCode: string };
     index: number;
 }) => {
     return (
@@ -38,6 +75,19 @@ export const InvoiceItemReduced = ({
                 </span>{' '}
                 <span className="font-bold text-yellow-600">
                     {item.props.yards.ceilingValue}
+                </span>
+                <span className="bold text-lg text-black italic">
+                    {' · '} Group code:{' '}
+                </span>
+                <span
+                    className={twm(
+                        'rounded px-1.5 py-0.5 font-mono text-sm text-white',
+                        GROUP_CODE_COLORS[
+                            item.groupCode as keyof typeof GROUP_CODE_COLORS
+                        ]
+                    )}
+                >
+                    {item.groupCode}
                 </span>
             </p>
         </div>
