@@ -84,6 +84,10 @@ export const YardsGroupedRequest = ({ list }: { list: Item[] }) => {
                                                     Total grouped and processed
                                                     yards: {group.totalYards}
                                                 </span>
+                                                {' · '}
+                                                <span className="block text-lg font-bold whitespace-pre-line text-gray-700">
+                                                    {group.description}
+                                                </span>
                                             </div>
                                             <div className="flex flex-col gap-2 divide-y divide-dashed divide-gray-600">
                                                 {group.items.map(

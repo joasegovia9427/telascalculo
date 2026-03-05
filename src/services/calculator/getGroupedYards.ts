@@ -92,12 +92,22 @@ export function getYardsWithMaxWidthRoll(list: Item[]): GroupedItem[] {
                 groupCode: getStripLetter(stripIndex),
             }))
         );
+        const description = strips
+            .map((stripItems, stripIndex) => {
+                const letter = getStripLetter(stripIndex);
+                const widths = stripItems.map(item => item.props.width);
+                const stripWidth = widths.reduce((a, b) => a + b, 0);
+                const widthsExpr = widths.join(' + ');
+                return `${letter}: ${widthsExpr} = ${stripWidth}`;
+            })
+            .join('\n');
         groups.push({
             id: key,
             type: t,
             fabric: f,
             color: c,
             totalYards,
+            description,
             items: itemsWithGroupCode,
         });
     }
