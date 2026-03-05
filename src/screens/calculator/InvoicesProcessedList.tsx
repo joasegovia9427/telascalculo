@@ -6,12 +6,17 @@ import {
     AccordionTrigger,
 } from '~/components/ui/accordion';
 import { Item } from '~/services/calculator';
-import { getTextOccurrencesCounter } from '~/utils/utils';
+import {
+    getTextOccurrencesCounter,
+    getZeroWidthHeightDataOccurrencesCounter,
+} from '~/utils/utils';
 
 import { InvoiceItem } from './InvoiceItem';
 
 export const InvoicesProcessedList = ({ list }: { list: Item[] }) => {
     const unknownDataCounter = getTextOccurrencesCounter(list, 'unknown');
+    const zeroWidthHeightDataCounter =
+        getZeroWidthHeightDataOccurrencesCounter(list);
 
     return (
         <Accordion type="single" collapsible defaultValue="item-1">
@@ -32,10 +37,18 @@ export const InvoicesProcessedList = ({ list }: { list: Item[] }) => {
                                         ERROR: {unknownDataCounter} unknown data
                                     </p>
                                 )}
+                                {zeroWidthHeightDataCounter > 0 && (
+                                    <p className="my-auto rounded-md bg-red-400 p-3">
+                                        ERROR: {zeroWidthHeightDataCounter} zero
+                                        width or height data
+                                    </p>
+                                )}
                                 {unknownDataCounter === 0 &&
+                                    zeroWidthHeightDataCounter === 0 &&
                                     list.length > 0 && (
                                         <div className="flex w-auto shrink-0 flex-row items-center gap-2 rounded-md bg-green-600/70 p-1 text-white">
-                                            No unknown data found. All OK 😉.
+                                            No unknown or 0 data found. All OK
+                                            😉.
                                         </div>
                                     )}
                             </CardDescription>

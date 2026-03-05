@@ -1,3 +1,5 @@
+import { Item } from '~/services/calculator';
+
 export function generateId() {
     return crypto.randomUUID();
 }
@@ -10,4 +12,10 @@ export function getTextOccurrencesCounter(object: unknown, searchText: string) {
     const regex = new RegExp(escapedSearch, 'gi');
     const matches = objectJsonString.match(regex);
     return matches?.length ?? 0;
+}
+
+export function getZeroWidthHeightDataOccurrencesCounter(list: Item[]) {
+    return list.filter(
+        item => item.props.width === 0 || item.props.height === 0
+    ).length;
 }

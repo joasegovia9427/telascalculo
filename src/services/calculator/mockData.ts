@@ -1,5 +1,20 @@
 export const mockData = `
-
+Square Cassette
+1. Máster Bath - Real Blackout Combi Ivory
+12 x 34 1/2 (Manual L) 2 Id -
+3. Master Left - Real Blackout Combi Ivory
+13 × 58 IB (Motorized L) 2 Id
+4. Room 1 - Real Blackout Combi Ivory
+70 1/2 × 15 (Motorized L)2 Y
+3. Master Left - Real Blackout Combi Ivory
+34 5/8 ×16 IB (Motorized L) 2 Id
+3. Master Left - Real Blackout Combi Ivory
+34 5/8 × 58 IB (Motorized L) 2 Id
+4. Room 1 - Real Blackout Combi Ivory
+70 1/2 × 17 3/8 (Motorized L)2 Y
+2. Master Right - Real Blackout Combi Ivory
+18 3/4 x 58 1/4 IB (Motorized R) 2 Yd
+ 
 Square Cassette
 1. Máster Bath - Real Blackout Combi Ivory
 22 1/2 x 34 1/2 (Manual L) 2 Id -

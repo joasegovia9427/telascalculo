@@ -64,10 +64,22 @@ const parseMixedNumber = (s: string): number => {
     return Number.isNaN(simple) ? 0 : simple;
 };
 
+/** Standalone fraction before "x" (e.g. "1/2 x 34 1/2") is invalid — dimension must have a whole number or mixed number, not only a fraction. */
+const STANDALONE_FRACTION_BEFORE_X = /^(?:\s*\([^)]*\))*\s*\d+\/\d+\s*[xX×]/;
+/** Standalone fraction after "x" (e.g. "70 1/2 × 3/8") is invalid — height must have a whole number or mixed number, not only a fraction. */
+const STANDALONE_FRACTION_AFTER_X =
+    /[xX×](?:\s*\([^)]*\))*\s*\d+\/\d+(\s|$|\))/;
+
 /** Match dimensions W x H; allows parentheticals before first number e.g. "(Roller Translucent) 34 7/8 x 60 1/2 (Manual L)", after x, and at end. Searches the whole line (no ^) so it works when dimensions follow a type in parens. */
 const parseDimensionsLine = (
     line: string
 ): { width: number; height: number } => {
+    if (STANDALONE_FRACTION_BEFORE_X.test(line)) {
+        return { width: 0, height: 0 };
+    }
+    if (STANDALONE_FRACTION_AFTER_X.test(line)) {
+        return { width: 0, height: 0 };
+    }
     const xMatch = line.match(
         /(?:\s*\([^)]*\))*\s*(\d+(?:\s+\d+\/\d+)?)(?:\s*\([^)]*\))*\s*[xX×]\s*(\d+(?:\s+\d+\/\d+)?)(?:\s*\([^)]*\))*/
     );
