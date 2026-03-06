@@ -43,8 +43,8 @@ export const InvoiceSource = ({
         <Accordion type="single" collapsible defaultValue="item-1">
             <AccordionItem value="item-1">
                 <Card>
-                    <AccordionTrigger headerClassName="bg-card sticky top-0 z-10 -mx-6 -mt-6 px-6 pt-6">
-                        <CardHeader className="flex w-full flex-row items-center">
+                    <AccordionTrigger headerClassName="bg-card sticky top-0 z-10 -mx-6 -mt-6 px-6 pt-6 ">
+                        <CardHeader className="flex w-full flex-row items-center text-xs sm:text-base">
                             <CardTitle>Source</CardTitle>
                             <CardDescription>
                                 <p className="my-auto">Add source items</p>
@@ -54,11 +54,11 @@ export const InvoiceSource = ({
 
                     <AccordionContent>
                         <div className="flex flex-col justify-between gap-2 md:flex-row">
-                            <div className="h-full w-full md:w-50">
+                            {/* <div className="h-full w-full md:w-50">
                                 <Card>
                                     <p>Image source:</p>
                                 </Card>
-                            </div>
+                            </div> */}
                             <div className="h-full w-full">
                                 <Card className="flex flex-col items-start gap-2">
                                     <div className="flex w-full flex-row items-center justify-between gap-2 p-2">

@@ -28,12 +28,12 @@ export const YardsGroupedRequest = ({ list }: { list: Item[] }) => {
         <Accordion type="single" collapsible defaultValue="item-1">
             <AccordionItem value="item-1">
                 <Card>
-                    <CardHeader className="bg-card sticky top-0 z-10 -mx-6 -mt-6 flex flex-row items-center px-6 pt-6">
+                    <CardHeader className="bg-card sticky top-0 z-10 -mx-6 -mt-6 flex flex-row items-center px-2 pt-6">
                         <AccordionTrigger
                             headerClassName="flex-1"
                             className="flex-1 flex-col sm:flex-row [&>svg]:ml-2"
                         >
-                            <CardTitle className="flex-1">
+                            <CardTitle className="flex-1 text-xs sm:text-base">
                                 Yards Grouped Request{' '}
                                 <span className="text-orange-500">
                                     with max width roll of ::
@@ -42,13 +42,13 @@ export const YardsGroupedRequest = ({ list }: { list: Item[] }) => {
                                     {MAX_WIDTH_ROLL_YARDS} yards
                                 </span>
                             </CardTitle>
-                            <CardDescription className="flex w-full flex-1 justify-end">
+                            <CardDescription className="flex w-full flex-1 justify-end text-xs sm:text-base">
                                 <div className="flex flex-row items-center gap-2">
-                                    <p className="text-bold my-auto align-middle text-lg text-green-600">
+                                    <p className="text-bold my-auto align-middle text-xs text-green-700 sm:text-lg">
                                         Total processed yards ::{' '}
                                         {totalProcessedYards} yards
                                     </p>
-                                    <p className="text-semibold text-md my-auto align-middle text-green-600 italic">
+                                    <p className="text-semibold text-md my-auto align-middle text-green-700 italic">
                                         We saved ::{' '}
                                         {totalUnprocessedYards -
                                             totalProcessedYards}{' '}
@@ -66,30 +66,33 @@ export const YardsGroupedRequest = ({ list }: { list: Item[] }) => {
                     </CardHeader>
 
                     <AccordionContent>
-                        <div className="max-h-[60vh] overflow-y-auto">
-                            <ul className="items-center space-y-2 divide-y-8 divide-gray-900">
+                        <div className="max-h-[80vh] overflow-y-auto">
+                            <ul className="items-center space-y-0 divide-y-6 divide-gray-900">
                                 {yardsGroupedRequestWithMaxWidthRoll.map(
                                     (group, groupIndex) => (
                                         <li
                                             key={group.id}
-                                            className="flex flex-col gap-2 pt-2"
+                                            className="flex flex-col gap-1 pt-1"
                                         >
-                                            <div className="rounded-md bg-gray-300 p-2 font-medium capitalize">
+                                            <div className="rounded-md bg-gray-300 p-1 font-medium capitalize">
                                                 {groupIndex + 1}. Type:
                                                 {group.type} — Name:{' '}
                                                 {group.fabric} — Color:{' '}
                                                 {group.color}
                                                 {' · '}
-                                                <span className="bold text-lg text-orange-600">
+                                                <span className="bold text-md text-orange-600">
                                                     Total grouped and processed
-                                                    yards: {group.totalYards}
+                                                    yards:{' '}
+                                                    <span className="bold text-md rounded-full bg-orange-100 p-1 text-orange-700">
+                                                        {group.totalYards}
+                                                    </span>
                                                 </span>
-                                                {' · '}
-                                                <span className="block text-lg font-bold whitespace-pre-line text-gray-700">
+                                                {' :: '}
+                                                <span className="block text-sm font-bold whitespace-pre-line text-gray-700 sm:text-lg">
                                                     {group.description}
                                                 </span>
                                             </div>
-                                            <div className="flex flex-col gap-2 divide-y divide-dashed divide-gray-600">
+                                            <div className="flex flex-col gap-1 divide-y divide-dashed divide-gray-600">
                                                 {group.items.map(
                                                     (item, index) => (
                                                         <InvoiceItemReduced

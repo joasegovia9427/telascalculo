@@ -7,7 +7,7 @@ function Card({ className, ...props }: React.ComponentProps<'div'>) {
         <div
             data-slot="card"
             className={twm(
-                'bg-card text-card-foreground mb-3 flex flex-col gap-3 divide-y divide-gray-200 rounded-xl border border-gray-200 p-6 shadow-md',
+                'bg-card text-card-foreground mb-3 flex flex-col gap-3 divide-y divide-gray-200 rounded-xl border border-gray-200 p-2 shadow-md sm:p-6',
                 className
             )}
             {...props}

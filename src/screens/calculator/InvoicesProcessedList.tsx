@@ -22,7 +22,7 @@ export const InvoicesProcessedList = ({ list }: { list: Item[] }) => {
         <Accordion type="single" collapsible defaultValue="item-1">
             <AccordionItem value="item-1">
                 <Card>
-                    <CardHeader className="bg-card sticky top-0 z-10 -mx-6 -mt-6 flex flex-row items-center px-6 pt-6">
+                    <CardHeader className="bg-card sticky top-0 z-10 -mx-6 -mt-6 flex flex-row items-center px-2 pt-6 text-xs sm:text-base">
                         <AccordionTrigger
                             headerClassName="flex-1"
                             className="flex-1 flex-col sm:flex-row [&>svg]:ml-2"
