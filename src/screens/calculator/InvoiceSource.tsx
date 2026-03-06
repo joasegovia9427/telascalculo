@@ -1,6 +1,7 @@
 import {
     ArrowDownWideNarrowIcon,
     BrushCleaningIcon,
+    TestTubeDiagonalIcon,
     // ListPlus
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -27,7 +28,11 @@ export const InvoiceSource = ({
 }: {
     onProcessSource: (textSource: string) => void;
 }) => {
-    const [textSource, setTextSource] = useState<string>(mockData);
+    const [textSource, setTextSource] = useState<string>('');
+
+    const handleAddMockData = () => {
+        setTextSource(mockData);
+    };
 
     const handleClearSource = () => {
         setTextSource('');
@@ -63,12 +68,20 @@ export const InvoiceSource = ({
                                 <Card className="flex flex-col items-start gap-2">
                                     <div className="flex w-full flex-row items-center justify-between gap-2 p-2">
                                         <p>Text input source:</p>
-                                        <Button
-                                            variant="secondary"
-                                            onClick={handleClearSource}
-                                        >
-                                            <BrushCleaningIcon className="size-4" />
-                                        </Button>
+                                        <div className="flex flex-row gap-2">
+                                            <Button
+                                                variant="secondary"
+                                                onClick={handleAddMockData}
+                                            >
+                                                <TestTubeDiagonalIcon className="size-4" />
+                                            </Button>
+                                            <Button
+                                                variant="destructive"
+                                                onClick={handleClearSource}
+                                            >
+                                                <BrushCleaningIcon className="size-4" />
+                                            </Button>
+                                        </div>
                                     </div>
                                     <Textarea
                                         value={textSource}

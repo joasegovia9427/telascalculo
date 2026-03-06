@@ -1,6 +1,6 @@
 import { generateId } from '~/utils/utils';
 
-import { FABRIC_TYPES, FABRICS } from './constants';
+import { EXCLUSION_WORDS, FABRIC_TYPES, FABRICS } from './constants';
 import { Item } from './type';
 
 type FabricKey = keyof typeof FABRICS;
@@ -16,9 +16,22 @@ const FABRIC_TYPE_ALIASES: { alias: string; canonicalType: FabricType }[] = (
 });
 FABRIC_TYPE_ALIASES.sort((a, b) => b.alias.length - a.alias.length);
 
+/** True if the line contains any of EXCLUSION_WORDS as a whole word (case-insensitive). */
+const lineHasExclusionWord = (line: string): boolean =>
+    EXCLUSION_WORDS.some(word =>
+        new RegExp(`\\b${escapeRegex(word)}\\b`, 'i').test(line)
+    );
+
+const escapeRegex = (s: string): string =>
+    s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 // const replaceBreakLinesForSpaces = (text: string): string => {
 //     return text.replace(/\n/g, ' ');
 // };
+
+/** True if any line in the item contains an exclusion word (whole word, case-insensitive). */
+const itemHasExclusionWord = (item: string): boolean =>
+    item.split('\n').some(line => lineHasExclusionWord(line));
 
 export const getProcessTextSource = (text: string): Item[] => {
     const lines = text
@@ -33,7 +46,7 @@ export const getProcessTextSource = (text: string): Item[] => {
         const isNewItem = /^\d+\./.test(line);
 
         if (isNewItem) {
-            if (currentItem) {
+            if (currentItem && !itemHasExclusionWord(currentItem)) {
                 stringsItems.push(currentItem);
             }
             currentItem = line;
@@ -42,7 +55,7 @@ export const getProcessTextSource = (text: string): Item[] => {
         }
     }
 
-    if (currentItem) {
+    if (currentItem && !itemHasExclusionWord(currentItem)) {
         stringsItems.push(currentItem);
     }
 
