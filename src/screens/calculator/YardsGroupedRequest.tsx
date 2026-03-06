@@ -36,10 +36,10 @@ export const YardsGroupedRequest = ({ list }: { list: Item[] }) => {
                             <CardTitle className="flex-1 text-xs sm:text-base">
                                 Yards Grouped Request{' '}
                                 <span className="text-orange-500">
-                                    with max width roll of ::
+                                    with max width roll of (inside) ::
                                 </span>{' '}
                                 <span className="bold text-orange-600 italic">
-                                    {MAX_WIDTH_ROLL_YARDS} yards
+                                    {MAX_WIDTH_ROLL_YARDS} inches
                                 </span>
                             </CardTitle>
                             <CardDescription className="flex w-full flex-1 justify-end text-xs sm:text-base">
