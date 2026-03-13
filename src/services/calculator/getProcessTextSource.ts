@@ -129,10 +129,29 @@ const yardsFromDimensions = (
     };
 };
 
+/** Detect an explicit type alias inside parentheses (e.g. "(Roller Zebra)" -> "zebra").
+ *  Parenthetical type markers take priority over the fabric's default type. */
+const detectParentheticalType = (normalized: string): FabricType | null => {
+    const parentheticals = [...normalized.matchAll(/\(([^)]+)\)/g)].map(m =>
+        m[1].trim()
+    );
+    for (const paren of parentheticals) {
+        for (const { alias, canonicalType } of FABRIC_TYPE_ALIASES) {
+            if (paren.includes(alias)) {
+                return canonicalType;
+            }
+        }
+    }
+    return null;
+};
+
 const parseTypeFabricColor = (
     itemText: string
 ): { type: FabricType; fabric: string; color: string } => {
     const normalized = itemText.toLowerCase().trim();
+
+    // An explicit type alias in parentheses (e.g. "(Roller Zebra)") overrides the fabric's default type.
+    const parentheticalType = detectParentheticalType(normalized);
 
     for (const key of Object.keys(FABRICS) as FabricKey[]) {
         const entry = FABRICS[key];
@@ -152,7 +171,7 @@ const parseTypeFabricColor = (
                 normalized.includes(colorKeyNorm)
             ) {
                 return {
-                    type: entry.type,
+                    type: parentheticalType ?? entry.type,
                     fabric: entry.name,
                     color: colorName,
                 };
@@ -160,13 +179,17 @@ const parseTypeFabricColor = (
         }
 
         return {
-            type: entry.type,
+            type: parentheticalType ?? entry.type,
             fabric: entry.name,
             color: 'unknown',
         };
     }
 
     // No fabric matched: try to infer type from aliases in FABRIC_TYPES (e.g. "roller zebra" -> zebra)
+    if (parentheticalType) {
+        return { type: parentheticalType, fabric: 'unknown', color: 'unknown' };
+    }
+
     for (const { alias, canonicalType } of FABRIC_TYPE_ALIASES) {
         if (normalized.includes(alias)) {
             return {

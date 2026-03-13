@@ -120,4 +120,41 @@ export const FABRICS = {
             natural: 'Natural',
         },
     },
+    pia_blackout: {
+        name: 'PIA Blackout',
+        type: FABRIC_TYPES.BLACKOUT[0],
+        color: {
+            pearl_white: 'Pearl White',
+        },
+    },
+    deco_blackout: {
+        name: 'Deco Blackout',
+        type: FABRIC_TYPES.BLACKOUT[0],
+        color: {
+            mocha: 'Mocha',
+            charcoal: 'Charcoal',
+        },
+    },
+    coulisse_essential_screen: {
+        name: 'Coulisse Essential Screen',
+        type: FABRIC_TYPES.SCREEN[0],
+        color: {
+            chalk_soft_grey: 'Chalk Soft Grey',
+            soft_grey: 'Soft Grey',
+        },
+    },
+    suit: {
+        name: 'Suit',
+        type: FABRIC_TYPES.SCREEN[0],
+        color: {
+            cream: 'Cream',
+        },
+    },
+    grandeur: {
+        name: 'Grandeur',
+        type: FABRIC_TYPES.SCREEN[0],
+        color: {
+            linen: 'Linen',
+        },
+    },
 } as const;
